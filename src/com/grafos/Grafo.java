@@ -1,14 +1,16 @@
 package com.grafos;
 
-import java.util.ArrayList;
+import com.domain.GrupoPesquisa;
 
-public class Grafo {
-    public ArrayList<Vertice> vertices;
-    public ArrayList<Aresta> arestas;
+import java.util.List;
+
+public class Grafo<T> {
+    public List<Vertice<T>> vertices;
+    public List<Aresta> arestas;
 
     public Grafo(){}
 
-    public Grafo(ArrayList<Vertice> vertices, ArrayList<Aresta> arestas){
+    public Grafo(List<Vertice<T>> vertices, List<Aresta> arestas){
         this.vertices = vertices;
         this.arestas = arestas;
     }

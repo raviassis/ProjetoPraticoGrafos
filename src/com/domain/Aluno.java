@@ -13,6 +13,6 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return String.format("Aluno: [CodAluno = %s, CodAreaPesquisa = %s]", codAluno, codAreaPesquisa);
+        return String.format("Aluno: {CodAluno = %s, CodAreaPesquisa = %s}", codAluno, codAreaPesquisa);
     }
 }
