@@ -25,6 +25,7 @@ public class Main {
         var arestas = conectarTodosVertices(vertices, matriz);
 
         var grafo = new Grafo(vertices, arestas);
+        var grafoReduzido = grafo.AGMKruskal();
 
     }
 
