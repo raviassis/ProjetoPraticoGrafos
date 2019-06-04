@@ -24,8 +24,13 @@ public class Main {
         var vertices = criarVertices(gruposPesquisa);
         var arestas = conectarTodosVertices(vertices, matriz);
 
-        var grafo = new Grafo(vertices, arestas);
+        var grafo = new Grafo<GrupoPesquisa>(vertices, arestas);
         var grafoReduzido = grafo.AGMKruskal();
+
+        grafoReduzido.vertices.forEach(v -> {
+            System.out.println(v.dado);
+            System.out.println();
+        });
 
     }
 
@@ -39,7 +44,7 @@ public class Main {
         gruposPesquisa.forEach(g -> {
             g.alunos.addAll(
                     alunos.stream()
-                            .filter(a -> a.codAreaPesquisa == g.area)
+                            .filter(a -> g.areas.contains(a.codAreaPesquisa))
                             .collect(Collectors.toList())
             );
         });
@@ -65,7 +70,7 @@ public class Main {
                                             .filter(v1 -> v1 != v)
                                             .map(v1 -> new Aresta(
                                                     new Vertice[]{v, v1},
-                                                    matriz.matriz[v.dado.area-1][v1.dado.area-1] )
+                                                    matriz.matriz[ v.dado.areas.get(0) -1][v1.dado.areas.get(0) - 1] )
                                             )
                                             .collect(Collectors.toList());
                     jaForamIterados.add(v);

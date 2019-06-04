@@ -32,8 +32,8 @@ public class Grafo<T> {
         return null;
     }
 
-    public Grafo AGMKruskal (){
-        Grafo agm = new Grafo();
+    public Grafo<T> AGMKruskal (){
+        Grafo agm = new Grafo<T>();
         this.arestas = this.ordenarArestasPorPeso(this.arestas);
         int i = 0;
         while (agm.arestas.size() < this.vertices.size() -1){
