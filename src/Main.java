@@ -17,6 +17,7 @@ public class Main {
     public static void main(String[] args) {
         String arqAlunos = "C:\\Users\\Dell\\Documents\\projects\\ProjetoPraticoGrafos\\alunos.txt";
         String arqMatriz = "C:\\Users\\Dell\\Documents\\projects\\ProjetoPraticoGrafos\\matriz.txt";
+        int kProfessores = 5;
 
         MatrizDissimilaridade matriz = ArquivoMatriz.Ler(arqMatriz);
         List<Aluno> alunos = ArquivoAluno.Ler(arqAlunos);
@@ -27,11 +28,22 @@ public class Main {
         var grafo = new Grafo<GrupoPesquisa>(vertices, arestas);
         var grafoReduzido = grafo.AGMKruskal();
 
-        grafoReduzido.vertices.forEach(v -> {
+        imprimirGrafo(grafoReduzido);
+
+        while (grafoReduzido.vertices.size() > kProfessores){
+            grafoReduzido.mesclarArestaComMenorPeso();
+        }
+
+        imprimirGrafo(grafoReduzido);
+
+    }
+
+    private static void imprimirGrafo(Grafo<GrupoPesquisa> grafo) {
+        System.out.println("Quantidade de grupos: " + grafo.vertices.size());
+        grafo.vertices.forEach(v -> {
             System.out.println(v.dado);
             System.out.println();
         });
-
     }
 
     private static List<GrupoPesquisa> gruposPesquisa(List<Aluno> alunos){
