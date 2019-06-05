@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Grafo<T> {
+public class Grafo<T extends IMesclavel> {
     public List<Vertice<T>> vertices;
     public List<Aresta> arestas;
 
@@ -28,8 +28,50 @@ public class Grafo<T> {
         this.arestas.add(aresta);
     }
 
+    public Vertice mesclarArestaComMenorPeso(){
+        var arestas = this.ordenarArestasPorPeso(this.arestas);
+        return this.mesclarVertices(arestas.get(0));
+    }
+
     public Vertice mesclarVertices(Aresta aresta){
-        return null;
+        var v1 = aresta.vertices[0];
+        var v2 = aresta.vertices[1];
+        this.arestas.remove(aresta);
+        var novoVertice = v1.mesclar(v2);
+
+        var arestasV1 = arestas.stream()
+                                .filter(a -> a.contem(v1))
+                                .collect(Collectors.toList());
+
+        var arestasV2 = arestas.stream()
+                                .filter(a -> a.contem(v2))
+                                .collect(Collectors.toList());
+
+        arestasV1.forEach(a -> {
+            if(a.vertices[0] == v1){
+                a.vertices[0] = novoVertice;
+                a.peso += aresta.peso / 2;
+            }else if (a.vertices[1] == v1){
+                a.vertices[1] = novoVertice;
+                a.peso += aresta.peso / 2;
+            }
+        });
+
+        arestasV2.forEach(a -> {
+            if(a.vertices[0] == v2){
+                a.vertices[0] = novoVertice;
+                a.peso += aresta.peso / 2;
+            }else if (a.vertices[1] == v2){
+                a.vertices[1] = novoVertice;
+                a.peso += aresta.peso / 2;
+            }
+        });
+
+        this.vertices.remove(v1);
+        this.vertices.remove(v2);
+        this.vertices.add(novoVertice);
+
+        return novoVertice;
     }
 
     public Grafo<T> AGMKruskal (){
@@ -63,19 +105,6 @@ public class Grafo<T> {
     }
 
     public boolean fechaClico(Aresta aresta) {
-        /*boolean temVerticeEsq = false;
-        boolean temVerticeDir = false;
-
-        for(var a : arestas){
-            temVerticeEsq = (contem(aresta.vertices[0]))
-                                    ? true
-                                    : temVerticeEsq;
-
-            temVerticeDir = (a.vertices[1] == aresta.vertices[1])
-                                    ? true
-                                    : temVerticeDir;
-        }*/
-
         return contem(aresta.vertices[0]) && contem(aresta.vertices[1]);
     }
 

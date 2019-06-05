@@ -10,4 +10,8 @@ public class Aresta {
         this.vertices = vertices;
         this.peso = peso;
     }
+
+    public boolean contem(Vertice v) {
+        return vertices[0] == v || vertices[1] == v;
+    }
 }
