@@ -318,7 +318,7 @@ Resultados exatamente como esperado, como a matriz de dissimilaridade vai cresce
     Aluno: {CodAluno = 1, CodAreaPesquisa = 7}
     Aluno: {CodAluno = 5, CodAreaPesquisa = 8}
 ### Conclusão
-Com este trabalho pudemos colocar em prática os algoritmos estudados em aula durante o semestre. E apesar de termos usado o algoritmo de Kruskal para resolver a matriz de dissimilaridade e aproximar os vértices para então resolver o problema, acredito que o mesmo possa ser resolvido com o uso de algoritmos diferentes como o de coloração talvez.
+Com este trabalho pudemos colocar em prática os algoritmos estudados em aula durante o semestre. E apesar de termos usado o algoritmo de Kruskal para resolver a matriz de dissimilaridade e aproximar os vértices para então resolver o problema, acredito que o mesmo possa ser resolvido com o uso de algoritmos diferentes.
 Logo percebe-se que os algoritmos para grafos podem ser usados em vários cenários diferentes e o uso ou não de um algoritmo depende de como está se modelando o problema proposto e qual informação é mais valiosa e qual algoritmo te dará a resposta de forma mais simples para o problema.
 	
 
